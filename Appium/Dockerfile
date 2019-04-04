@@ -4,6 +4,12 @@ LABEL maintainer "Srinivasan Sekar <srinivasan.sekar1990@gmail.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+# Set os proxy
+ENV http_proxy "http://proxy-shz.intel.com:911"
+ENV https_proxy "http://proxy-shz.intel.com:911"
+ENV HTTP_PROXY "http://proxy-shz.intel.com:911"
+ENV HTTPS_PROXY "http://proxy-shz.intel.com:911"
+
 #=============
 # Set WORKDIR
 #=============
@@ -62,9 +68,9 @@ ENV JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64/jre" \
 #=====================
 # Install Android SDK
 #=====================
-ARG SDK_VERSION=sdk-tools-linux-3859397
-ARG ANDROID_BUILD_TOOLS_VERSION=26.0.0
-ARG ANDROID_PLATFORM_VERSION="android-25"
+ARG SDK_VERSION=sdk-tools-linux-4333796
+ARG ANDROID_BUILD_TOOLS_VERSION=28.0.3
+ARG ANDROID_PLATFORM_VERSION="android-28"
 
 ENV SDK_VERSION=$SDK_VERSION \
     ANDROID_BUILD_TOOLS_VERSION=$ANDROID_BUILD_TOOLS_VERSION \
@@ -135,3 +141,7 @@ RUN chmod +x /root/entry_point.sh && \
 # Run xvfb and appium server
 #========================================
 CMD /root/wireless_autoconnect.sh && /root/entry_point.sh
+
+# unset os proxy
+ENV http_proxy ""
+ENV https_proxy ""
